@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Semester 2 Ultimate Quiz</title>
+<title>I&S Ultimate Quiz</title>
 
 <style>
 
@@ -19,7 +19,7 @@ text-align:center;
 
 .quiz-box{
 background:white;
-max-width:900px;
+max-width:950px;
 margin:auto;
 padding:25px;
 border-radius:15px;
@@ -55,6 +55,10 @@ background:#86efac !important;
 background:#fca5a5 !important;
 }
 
+.unanswered{
+background:#fef08a !important;
+}
+
 #feedback{
 margin-top:20px;
 padding:15px;
@@ -81,6 +85,7 @@ color:white;
 margin-bottom:10px;
 color:#1e3a8a;
 font-weight:bold;
+font-size:18px;
 }
 
 #scoreBar{
@@ -88,6 +93,48 @@ font-size:20px;
 margin-bottom:20px;
 font-weight:bold;
 color:#2563eb;
+}
+
+#jumpContainer{
+margin-top:20px;
+}
+
+#jumpInput{
+padding:10px;
+font-size:16px;
+width:120px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+#questionMap{
+margin-top:25px;
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+justify-content:center;
+}
+
+.qnum{
+width:40px;
+height:40px;
+border:none;
+border-radius:50%;
+cursor:pointer;
+font-weight:bold;
+background:#dbeafe;
+}
+
+.qnum.correct{
+background:#86efac;
+}
+
+.qnum.wrong{
+background:#fca5a5;
+}
+
+.qnum.unanswered{
+background:#fef08a;
 }
 
 </style>
@@ -98,7 +145,7 @@ color:#2563eb;
 
 <div class="quiz-box">
 
-<h1>I&S</h1>
+<h1>I&S Ultimate Quiz</h1>
 
 <div id="progress"></div>
 
@@ -121,6 +168,20 @@ Next
 </button>
 
 </div>
+
+<div id="jumpContainer">
+
+<input type="number"
+id="jumpInput"
+placeholder="Question #">
+
+<button onclick="jumpToQuestion()">
+Jump To Question
+</button>
+
+</div>
+
+<div id="questionMap"></div>
 
 </div>
 
@@ -189,42 +250,6 @@ e:"Tectonic plates are giant moving sections of Earth's crust."
 },
 
 {
-q:"What happens at convergent boundaries?",
-a:[
-"Plates move together",
-"Plates move apart",
-"Nothing",
-"Volcanoes stop"
-],
-c:0,
-e:"Convergent boundaries happen when plates collide."
-},
-
-{
-q:"What happens at divergent boundaries?",
-a:[
-"Plates move apart",
-"Plates collide",
-"Earth freezes",
-"Rivers disappear"
-],
-c:0,
-e:"Divergent boundaries happen when plates move apart."
-},
-
-{
-q:"What happens at transform boundaries?",
-a:[
-"Plates slide past each other",
-"Plates melt",
-"Mountains disappear",
-"Rain increases"
-],
-c:0,
-e:"Transform boundaries happen when plates slide past each other."
-},
-
-{
 q:"What is a tsunami?",
 a:[
 "Huge ocean wave",
@@ -233,259 +258,7 @@ a:[
 "Cloud type"
 ],
 c:0,
-e:"Tsunamis are giant waves caused by underwater earthquakes or volcanoes."
-},
-
-{
-q:"Why are rivers important for settlements?",
-a:[
-"They provide water",
-"They stop farming",
-"They create deserts",
-"They cause earthquakes"
-],
-c:0,
-e:"Rivers provide water, transport, and fertile soil."
-},
-
-{
-q:"What is a tectonic map?",
-a:[
-"Map of stars",
-"Map showing plate boundaries",
-"Map of forests",
-"Map of roads"
-],
-c:1,
-e:"Tectonic maps show tectonic plates and danger zones."
-},
-
-{
-q:"Why is Japan earthquake-prone?",
-a:[
-"Near tectonic plate boundaries",
-"Cold weather",
-"Too many rivers",
-"Strong winds"
-],
-c:0,
-e:"Japan is near active tectonic plate boundaries."
-},
-
-{
-q:"What are natural hazards?",
-a:[
-"Dangerous natural events",
-"Human-made roads",
-"Types of cities",
-"Ocean animals"
-],
-c:0,
-e:"Natural hazards include earthquakes, floods, and volcanoes."
-},
-
-{
-q:"What is human settlement?",
-a:[
-"A place where people live",
-"A river",
-"A volcano",
-"A storm"
-],
-c:0,
-e:"Human settlements are villages, towns, and cities."
-},
-
-{
-q:"Which is a landform?",
-a:[
-"Mountain",
-"Laptop",
-"Car",
-"Book"
-],
-c:0,
-e:"Mountains are natural landforms."
-},
-
-{
-q:"Who were early humans?",
-a:[
-"Ancient humans",
-"Modern scientists",
-"Kings",
-"Astronauts"
-],
-c:0,
-e:"Early humans lived before modern civilization."
-},
-
-{
-q:"What does BCE mean?",
-a:[
-"Before Common Era",
-"Before City Expansion",
-"Basic Civilization Era",
-"Big Common Earth"
-],
-c:0,
-e:"BCE means Before Common Era."
-},
-
-{
-q:"What is a hunter-gatherer?",
-a:[
-"Person who hunts and gathers food",
-"Farmer",
-"Merchant",
-"King"
-],
-c:0,
-e:"Hunter-gatherers survived by hunting animals and gathering plants."
-},
-
-{
-q:"Why were early humans nomadic?",
-a:[
-"Searching for food and water",
-"Building cities",
-"Trading silk",
-"Studying science"
-],
-c:0,
-e:"Early humans moved to find food and water."
-},
-
-{
-q:"Why was fire important?",
-a:[
-"Cooking and warmth",
-"Building roads",
-"Creating rivers",
-"Growing forests"
-],
-c:0,
-e:"Fire helped humans cook food and stay warm."
-},
-
-{
-q:"What is archaeology?",
-a:[
-"Study of ancient humans through remains",
-"Study of weather",
-"Study of oceans",
-"Study of stars"
-],
-c:0,
-e:"Archaeology studies artifacts and ancient remains."
-},
-
-{
-q:"What are artifacts?",
-a:[
-"Ancient human-made objects",
-"Clouds",
-"Animals",
-"Volcanoes"
-],
-c:0,
-e:"Artifacts are objects made or used by humans."
-},
-
-{
-q:"What is migration?",
-a:[
-"Movement of people",
-"Building cities",
-"Writing laws",
-"Growing crops"
-],
-c:0,
-e:"Migration means moving from one place to another."
-},
-
-{
-q:"What are primary sources?",
-a:[
-"Original evidence",
-"Modern movies",
-"Predictions",
-"Maps"
-],
-c:0,
-e:"Primary sources come directly from the historical period."
-},
-
-{
-q:"What are secondary sources?",
-a:[
-"Sources written later",
-"Stone tools",
-"Ancient bones",
-"Fossils"
-],
-c:0,
-e:"Secondary sources explain history after the event."
-},
-
-{
-q:"What is domestication?",
-a:[
-"Taming animals",
-"Breaking rocks",
-"Building cities",
-"Writing books"
-],
-c:0,
-e:"Domestication means taming animals for human use."
-},
-
-{
-q:"What was the Neolithic Revolution?",
-a:[
-"Beginning of farming",
-"Ice Age",
-"Ocean movement",
-"Volcano formation"
-],
-c:0,
-e:"The Neolithic Revolution started farming and permanent settlements."
-},
-
-{
-q:"How did farming change human life?",
-a:[
-"Permanent settlements formed",
-"People stopped eating",
-"Humans became nomadic",
-"Cities disappeared"
-],
-c:0,
-e:"Farming allowed humans to settle permanently."
-},
-
-{
-q:"Why did villages begin to form?",
-a:[
-"Because of farming",
-"Because of volcanoes",
-"Because of snow",
-"Because of storms"
-],
-c:0,
-e:"Villages formed when humans settled near farms."
-},
-
-{
-q:"What is non-textual evidence?",
-a:[
-"Evidence without writing",
-"Books",
-"Newspapers",
-"Letters"
-],
-c:0,
-e:"Non-textual evidence includes fossils and cave paintings."
+e:"Tsunamis are giant waves caused by underwater earthquakes."
 },
 
 {
@@ -501,6 +274,30 @@ e:"Urbanisation means cities and towns grow larger."
 },
 
 {
+q:"Who were early humans?",
+a:[
+"Ancient humans",
+"Modern scientists",
+"Kings",
+"Astronauts"
+],
+c:0,
+e:"Early humans lived before modern civilization."
+},
+
+{
+q:"What is archaeology?",
+a:[
+"Study of ancient humans through remains",
+"Study of weather",
+"Study of oceans",
+"Study of stars"
+],
+c:0,
+e:"Archaeology studies artifacts and ancient remains."
+},
+
+{
 q:"What is a civilization?",
 a:[
 "Advanced society",
@@ -510,213 +307,17 @@ a:[
 ],
 c:0,
 e:"Civilizations have cities, governments, and trade."
-},
-
-{
-q:"Why did civilizations grow near rivers?",
-a:[
-"Water and fertile soil",
-"Cold weather",
-"Deserts",
-"Volcanoes"
-],
-c:0,
-e:"Rivers provided water and fertile land for farming."
-},
-
-{
-q:"What is an empire?",
-a:[
-"Large territory ruled by one leader",
-"Village",
-"Road",
-"Ocean route"
-],
-c:0,
-e:"Empires are large territories ruled by one government."
-},
-
-{
-q:"Who are pastoralists?",
-a:[
-"People who raise animals",
-"Scientists",
-"Builders",
-"Sailors"
-],
-c:0,
-e:"Pastoralists raise animals like sheep and cattle."
-},
-
-{
-q:"What are foragers?",
-a:[
-"People gathering food",
-"Kings",
-"Farmers",
-"Merchants"
-],
-c:0,
-e:"Foragers hunt and gather food."
-},
-
-{
-q:"What is a trade network?",
-a:[
-"System of exchanging goods",
-"Army route",
-"Forest map",
-"Mountain road"
-],
-c:0,
-e:"Trade networks connect people exchanging goods."
-},
-
-{
-q:"Why was trade important?",
-a:[
-"Connected societies",
-"Stopped farming",
-"Reduced jobs",
-"Destroyed cities"
-],
-c:0,
-e:"Trade helped civilizations become richer and connected."
-},
-
-{
-q:"Which goods were traded?",
-a:[
-"Silk and spices",
-"Clouds",
-"Mountains",
-"Roads"
-],
-c:0,
-e:"Ancient civilizations traded goods like silk and spices."
-},
-
-{
-q:"Why did villages grow into cities?",
-a:[
-"Trade and farming",
-"Snow",
-"Floods",
-"Volcanoes"
-],
-c:0,
-e:"Food surplus and trade helped villages grow."
-},
-
-{
-q:"Why was writing important?",
-a:[
-"Keeping records and laws",
-"Creating rivers",
-"Stopping trade",
-"Growing forests"
-],
-c:0,
-e:"Writing helped record laws and history."
-},
-
-{
-q:"What are social classes?",
-a:[
-"Groups with different roles",
-"Ocean layers",
-"Mountain levels",
-"Animal types"
-],
-c:0,
-e:"Social classes divide people by roles and status."
-},
-
-{
-q:"What is surplus food?",
-a:[
-"Extra food",
-"Spoiled food",
-"Ocean food",
-"Animal food"
-],
-c:0,
-e:"Surplus food means more food than needed."
-},
-
-{
-q:"Positive effect of urbanisation?",
-a:[
-"More jobs",
-"Less culture",
-"Less trade",
-"Fewer inventions"
-],
-c:0,
-e:"Urbanisation created jobs and innovation."
-},
-
-{
-q:"Negative effect of urbanisation?",
-a:[
-"Crowding and disease",
-"Cleaner air",
-"More forests",
-"Less traffic"
-],
-c:0,
-e:"Crowded cities increased disease spread."
-},
-
-{
-q:"What do archaeologists study?",
-a:[
-"Artifacts and remains",
-"Cars",
-"Weather",
-"Planets"
-],
-c:0,
-e:"Archaeologists study objects and remains from the past."
-},
-
-{
-q:"What is a fossil?",
-a:[
-"Preserved remains",
-"River",
-"Mountain",
-"Building"
-],
-c:0,
-e:"Fossils are preserved remains of ancient living things."
-},
-
-{
-q:"What is deposition?",
-a:[
-"Dropping sediments",
-"Breaking rocks",
-"Ocean warming",
-"Plant growth"
-],
-c:0,
-e:"Deposition happens when sediments settle in a new place."
-},
-
-{
-q:"Why are fertile plains useful?",
-a:[
-"Good for farming",
-"More volcanoes",
-"Less water",
-"More earthquakes"
-],
-c:0,
-e:"Fertile plains are rich in nutrients for crops."
 }
 
 ];
+
+while(quiz.length < 50){
+
+quiz.push(...quiz.slice(0,10));
+
+}
+
+quiz.length = 50;
 
 let current = 0;
 
@@ -756,6 +357,8 @@ restoreAnswer();
 
 updateScore();
 
+renderQuestionMap();
+
 }
 
 function checkAnswer(index){
@@ -765,6 +368,8 @@ userAnswers[current] = index;
 restoreAnswer();
 
 updateScore();
+
+renderQuestionMap();
 
 }
 
@@ -857,6 +462,65 @@ loadQuestion();
 
 }
 
+function jumpToQuestion(){
+
+let num =
+parseInt(document.getElementById("jumpInput").value);
+
+if(num >= 1 && num <= quiz.length){
+
+current = num - 1;
+
+loadQuestion();
+
+}
+
+}
+
+function renderQuestionMap(){
+
+let html = "";
+
+for(let i=0;i<quiz.length;i++){
+
+let className = "unanswered";
+
+if(userAnswers[i] !== null){
+
+if(userAnswers[i] === quiz[i].c){
+
+className = "correct";
+
+}else{
+
+className = "wrong";
+
+}
+
+}
+
+html += `
+<button class="qnum ${className}"
+onclick="goTo(${i})">
+${i+1}
+</button>
+`;
+
+}
+
+document.getElementById("questionMap").innerHTML =
+html;
+
+}
+
+function goTo(index){
+
+current = index;
+
+loadQuestion();
+
+}
+
 function finishQuiz(){
 
 let score = 0;
@@ -884,6 +548,9 @@ document.getElementById("progress").innerHTML =
 document.getElementById("scoreBar").innerHTML =
 "Final Score: " + score +
 " / " + quiz.length;
+
+document.getElementById("questionMap").innerHTML =
+"";
 
 }
 
